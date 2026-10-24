@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper to check if the user is accessing their own data
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Allow users to read and write their own documents
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      match /{allSubcollections=**} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Live Real-Time 1v1 Multiplayer Chess Rooms
+    match /chess_rooms/{roomId} {
+      allow read, write: if true;
+    }
+
+    // Public educational lectures, playlists, and announcements
+    match /lectures/{lectureId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+    match /playlists/{playlistId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+    match /announcements/{announcementId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+  }
+}

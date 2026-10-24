@@ -1,0 +1,8 @@
+{
+  "name": "Narayana StudyOS AI",
+  "description": "An intelligent, modular assistant for students that builds functional applications through a guided, step-by-step development process.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "collections": {
+    "users": {
+      "schema": {
+        "userId": "string",
+        "displayName": "string?",
+        "email": "string?",
+        "photoUrl": "string?"
+      },
+      "collections": {
+        "notes": {
+          "schema": {
+            "title": "string",
+            "content": "string",
+            "createdAt": "timestamp",
+            "updatedAt": "timestamp"
+          }
+        },
+        "chess_records": {
+          "schema": {
+            "fen": "string",
+            "pgn": "string",
+            "result": "string?",
+            "timestamp": "timestamp"
+          }
+        },
+        "study_timers": {
+          "schema": {
+            "duration": "number",
+            "startTime": "timestamp",
+            "endTime": "timestamp?"
+          }
+        },
+        "alarms": {
+          "schema": {
+            "time": "string",
+            "label": "string?",
+            "isEnabled": "boolean",
+            "repeatDays": "array"
+          }
+        }
+      }
+    }
+  }
+}
